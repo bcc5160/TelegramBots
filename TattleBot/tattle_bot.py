@@ -1,19 +1,28 @@
 import telebot
+import configparser
+
+# Parse config file to get the API Key
+config = configparser.ConfigParser()
+config.read("tattle_bot.cfg")
+
+TOKEN = config['telegram_bot_api']['telegram_token']
 
 # Declare bot
-API_TOKEN = '113819352:AAEWvka0FazZsMdPUB-2atlQQXsvCZWuBCA'
+bot = telebot.TeleBot(TOKEN)
 
-bot = telebot.TeleBot(API_TOKEN)
+# List of users
+
 
 # Message handler for /start and /help
 @bot.message_handler(commands=['start','help'])
 def send_welcome(message):
 	bot.reply_to(message, "Ask me who did it. I know.")
 
-# Echo message back to the user
-@bot.message_handler(func=lambda m:True)
-def echo_all(message):
-	bot.reply_to(message, message.text)
+# Ask bot who did it
+@bot.message_handler(regexp="(Who|who)")
+def handle_message(message):
+    bot.reply_to(message, "Person")
 
 # Bot waits for events
+print("Tattle_bot is running...")
 bot.polling()
