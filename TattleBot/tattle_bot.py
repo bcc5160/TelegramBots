@@ -11,7 +11,7 @@ TOKEN = config['telegram_bot_api']['telegram_token']
 bot = telebot.TeleBot(TOKEN)
 
 # List of users
-
+bot.users.getUsers();
 
 # Message handler for /start and /help
 @bot.message_handler(commands=['start','help'])

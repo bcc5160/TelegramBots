@@ -23,7 +23,7 @@ which_one = 'Neither'
 what_to_do = 'Nothing' 
 
 # Handle the Magic Conch Shell auto question response
-@bot.message_handler(regexp="(W|w)ill|(c|C)an|(D|d)oes|(m|M)ay|(i|I)s|(A|a)m|(S|s)hould")
+@bot.message_handler(regexp="(W|w)ill|(c|C)an|(D|d)oes|(m|M)ay|(i|I)s|(A|a)m|(S|s)hould|(H|h)ave")
 def handle_message(message):
 	length = len(responses) - 1
 	myResponse = responses[randint(0,length)]
