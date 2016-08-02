@@ -34,31 +34,52 @@ chatbot = ChatBot(
 
 ChatStuff = [
     "Winter is coming",
-    "Pokemon GO",
-    "Douglas",
-    "What",
-    "i believe in you"
+    "The night is dark and full of terrors",
+    "Dude, I love Game of Thrones",
+    "Nurses are the best!",
+    "My favorite instrument is the guitar.",
+    "Douglas.",
+    "Golden Retrievers are the best dogs",
+    "Sure",
+    "Okay",
+    "What?",
+    "No",
+    "Yeah totes!!",
+    "Whatever",
+    "I love climbing stuff",
+    "Dan Pierson?",
+    "EZ",
+    "Believe in yourself",
+    "Duckies!!!",
+    "I am fine.",
+    "Are you sure",
+    "Let's play DOTA2",
+    "I am the carry of this team.",
+    "You are the support",
+    "Stop",
+    "Hannah",
+    "Brent",
+    "Brittany",
+    "Luis",
+    "Help. Help. Plz Help.",
+    "Matt",
+    "Eli",
+    "Katie",
 ]
 
 # Chatbot training
-# chatbot.set_trainer(ListTrainer)
-chatbot.set_trainer(ChatterBotCorpusTrainer)
+chatbot.set_trainer(ListTrainer)
 
-# Train based on the english corpus
-chatbot.train("chatterbot.corpus.english")
-# chatbot.train(ChatStuff)
-# Train based on english greetings corpus
-# chatbot.train("chatterbot.corpus.english.greetings")
-
-# Train based on the english conversations corpus
-# chatbot.train("chatterbot.corpus.english.conversations")
-
+chatbot.train(ChatStuff)
+# chatbot.set_trainer(ChatterBotCorpusTrainer)
+# chatbot.train("chatterbot.corpus.english")
 
 # Bot action responding
 @bot.message_handler(func=lambda m:(random.random() < frequency))
 # @bot.message_handler(commands=['test'])
 def chatterbot_us(message):
-    inp = str(message)
+    inp = str(message.text)
+    print(message.text)
     response = chatbot.get_response(inp)
     print(response)
     # Send a message in group

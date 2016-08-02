@@ -9,9 +9,14 @@ TOKEN = config['telegram_bot_api']['telegram_token']
 
 # Declare bot
 bot = telebot.TeleBot(TOKEN)
-
+ 
 # List of users
-bot.users.getUsers();
+# bot.users.getUsers();
+
+# Get the guilty person
+def tattle():
+    print(bot.get_chat())
+
 
 # Message handler for /start and /help
 @bot.message_handler(commands=['start','help'])
@@ -21,6 +26,7 @@ def send_welcome(message):
 # Ask bot who did it
 @bot.message_handler(regexp="(Who|who)")
 def handle_message(message):
+    tattle()
     bot.reply_to(message, "Person")
 
 # Bot waits for events
